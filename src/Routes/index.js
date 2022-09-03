@@ -7,9 +7,9 @@ import WeatherService from "../Components/WeatherService";
 const index = () => {
   return (
     <Routes>
-      <Route path="/weather-alert" element={<WeatherAlert/>} />
-      <Route path="/weather-service" element={<WeatherService/>} />
-      <Route path="/subscribe" element={<Login/>} />
+      <Route path="/weatheralert" element={<WeatherAlert/>} />
+      <Route path="/weatherservice" element={<WeatherService/>} />
+     { !localStorage.getItem("token") && <Route path="/subscribe" element={<Login/>} />}
     </Routes>
   );
 };

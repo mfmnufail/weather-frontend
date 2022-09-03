@@ -17,51 +17,40 @@ const Login = () => {
         event.preventDefault();
 
         localStorage.setItem('token', "login success");
-        window.location.reload()
+       
 
-      //   axios.get("http://localhost:8080/api/observer").then((response) => {
-      //     setObserver(response.data);
-      //     console.log(response.data);
-      // });
+        axios.get(`http://localhost:8080/api/observer/username/${username}`).then((response) => {
+          axios.get(`http://localhost:8080/api/observer/email/${email}`).then((res)=>{
 
-        // axios.get("http://localhost:8080/api/observer").then((response) => {
-        //   setObserver(response.data)
-        //   console.log("observer " + response.data)
-        //   // const isFound = response.data.some(element => {
-        //   //   if (element.username === username || element.email === email) {
-        //   //     return true;
+            if(!response.data && !res.data ){
+  
+              const user = {
+                username: username,
+                email:email
+                
+                
+              };
               
-        //   //   } 
-          
-        //   //   return false
-        //   // })
-
-        //   // if(!isFound){
-
-        //   //   const user = {
-        //   //     username: username,
-        //   //     email:email
+              console.log("Login details" + JSON.stringify(user))
               
-              
-        //   //   };
-            
-        //   //   console.log("Login details" + JSON.stringify(user))
-            
-        //   //   axios.post("https://localhost:4000/login", user).then((res) => {
-        //   //   });
-        //   //   localStorage.setItem('token', "login success");
-         
-        //   // }else{
-        //   //   setError("User name already exist!!!")
-        //   // }
+              axios.post("http://localhost:8080/api/observer", user).then((res) => {
+                console.log("Login" + res.data.id)
+                localStorage.setItem('Id', res.data.id);
+                window.location.reload()
+              });
+           
+            }else{
+              setError("User name already exist!!!")
+            }
+          })
 
-        // })  
+
+        })  
 
 
       
 
       
-      // window.location.reload()
 
         
       };
