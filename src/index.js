@@ -3,11 +3,19 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import 'semantic-ui-css/semantic.min.css'
+import Login from "./Components/Login"
+import {Container} from "semantic-ui-react"
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
+    <Container>
+
+    {/* {!localStorage.getItem('token') &&<Login />} */}
     <App />
+
+    </Container>
   </React.StrictMode>
 );
 
